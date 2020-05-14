@@ -19,6 +19,9 @@ Puppet::Type.type(:datacat_collector).provide(:datacat_collector) do
       data.merge!(fragment[:data], &deep_merge)
     end
 
+    # we don't want sensistive data, like AWS access/secret keys, to be populated in puppet debug logs so we delete them here
+    keys_to_delete = ["aws_access_key_id", "aws_secret_access_key"]
+    data.slice!(keys_to_delete)
     debug "Collected #{data.inspect}"
 
     if @resource[:source_key]
