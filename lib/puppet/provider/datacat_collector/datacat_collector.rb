@@ -19,9 +19,10 @@ Puppet::Type.type(:datacat_collector).provide(:datacat_collector) do
       data.merge!(fragment[:data], &deep_merge)
     end
 
-    # when we debug, we don't want to log sensistive data so we use the exclude_from_debug key to filter those keys out.
-    exclude_keys = data[:exclude_from_debug]
-    debug "Collected #{data.except(exclude_keys)}"
+    # when we debug, we want the print to be based on a flag in case the data hash has sensitive data
+    if @resource[:print_debug] == true
+      debug "Collected #{data.except(exclude_keys)}"
+    end
 
     if @resource[:source_key]
       debug "Selecting source_key #{@resource[:source_key]}"
