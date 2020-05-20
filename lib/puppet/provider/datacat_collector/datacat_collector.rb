@@ -20,7 +20,7 @@ Puppet::Type.type(:datacat_collector).provide(:datacat_collector) do
     end
 
     # when we debug, we want the print to be based on a flag in case the data hash has sensitive data
-    if @resource[:print_debug] == true
+    if @resource[:print_debug_data] == true
       debug "Collected #{data.except(exclude_keys)}"
     end
 

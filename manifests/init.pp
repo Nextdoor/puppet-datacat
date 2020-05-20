@@ -26,7 +26,7 @@ define datacat(
   $owner                   = undef,
   $mode                    = undef,
   $path                    = $title,
-  $print_debug             = undef,
+  $print_debug_data        = undef,
   $replace                 = undef,
   $selinux_ignore_defaults = undef,
   $selrange                = undef,
@@ -91,6 +91,7 @@ define datacat(
       target_field    => 'content',
       collects        => $collects,
       before          => File[$title], # we want to evaluate before that resource so it can do the work
+      print_debug_data => $print_debug_data
     }
   }
 }

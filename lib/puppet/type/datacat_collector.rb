@@ -59,4 +59,8 @@ Puppet::Type.newtype(:datacat_collector) do
   newparam(:template_body) do
     desc 'The slurped body of the template to render.'
   end
+
+  newparam(:print_debug_data) do
+    desc 'A boolean that specifies whether to print the data hash as a debug statement in the datacat_collector'
+  end
 end
