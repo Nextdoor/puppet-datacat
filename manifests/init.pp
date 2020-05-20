@@ -26,6 +26,7 @@ define datacat(
   $owner                   = undef,
   $mode                    = undef,
   $path                    = $title,
+  $print_debug             = undef,
   $replace                 = undef,
   $selinux_ignore_defaults = undef,
   $selrange                = undef,
