@@ -19,7 +19,10 @@ Puppet::Type.type(:datacat_collector).provide(:datacat_collector) do
       data.merge!(fragment[:data], &deep_merge)
     end
 
-    debug "Collected #{data.inspect}"
+    # when we debug, we want the print to be based on a flag in case the data hash has sensitive data
+    if @resource[:print_debug_data] == true
+      debug "Collected #{data.inspect}"
+    end
 
     if @resource[:source_key]
       debug "Selecting source_key #{@resource[:source_key]}"
